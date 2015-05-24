@@ -1,10 +1,9 @@
 
 
-/**
- * @result  : pass -> @test name : promise.forever
+##@result  : pass -> @test name : promise.forever
 
-``@codes   :
- =================================================
+##@codes   :
+=================================================
 
 	var i = 0;
 
@@ -20,13 +19,10 @@
 	}, function (){
 		console.log('done');
 	});
-=================================================
-*/
 
-/**
- * @result  : pass -> @test name : promise.foreverChain
+##@result  : pass -> @test name : promise.foreverChain
 
- ``@codes   :
+##@codes   :
  =================================================
 
 	promise.foreverChain({ x : 1 }, function (s, f){
@@ -45,15 +41,12 @@
 	}, function(){
 		console.log('done');
 	});
+
+
+##@result  : pass -> @test name : promise.chain
+
+##@codes   :
 =================================================
-*/
-
-
-/**
- * @result  : pass -> @test name : promise.chain
-
- ``@codes   :
- =================================================
 
 	var p = promise(function (s, f){
 		setTimeout(function (){
@@ -85,17 +78,15 @@
 		console.log('-------------------');
 		console.log(complete);
 	});
- =================================================
- */
 
 
-/**
- * @result  : pass ->
+
+##@result  : pass ->
  				@test name :
  						promise.chain + promise.makePromiseArray
 
- ``@codes   :
- =================================================
+##@codes   :
+=================================================
 
 	var p = promise(function (s, f){
 		setTimeout(function (){
@@ -114,15 +105,12 @@
 		console.log(value);
 	})
 
- =================================================
- */
 
 
-/**
- * @result  : pass -> @test name : promise.chain + promise.memory
+##@result  : pass -> @test name : promise.chain + promise.memory
 
- ``@codes   :
- =================================================
+##@codes   :
+=================================================
 	 	var fs = require('fs');
 		var m = promise.memory(fs.readFile);
 
@@ -171,8 +159,5 @@
 				console.log('-+++++++++++++++++++++++----');
 				console.log(complete, all);
 		});
-
- =================================================
- */
 
 
