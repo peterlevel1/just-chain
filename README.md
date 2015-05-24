@@ -1,13 +1,13 @@
 
 
-##@result  : pass -> @test name : promise.forever
+##@result  : pass -> @test name : justChain.forever
 
 ##@codes   :
 =================================================
 
 	var i = 0;
 
-	promise.forever(1000, function (){
+	justChain.forever(1000, function (){
 
 		i++;
 
@@ -20,12 +20,12 @@
 		console.log('done');
 	});
 
-##@result  : pass -> @test name : promise.foreverChain
+##@result  : pass -> @test name : justChain.foreverChain
 
 ##@codes   :
  =================================================
 
-	promise.foreverChain({ x : 1 }, function (s, f){
+	justChain.foreverChain({ x : 1 }, function (s, f){
 
 		console.log(this.x);
 
@@ -43,19 +43,19 @@
 	});
 
 
-##@result  : pass -> @test name : promise.chain
+##@result  : pass -> @test name : justChain.chain
 
 ##@codes   :
 =================================================
 
-	var p = promise(function (s, f){
+	var p = justChain(function (s, f){
 		setTimeout(function (){
 			console.log(1);
 			s();
 		}, 100);
 	});
 
-	promise.chain(p, [
+	justChain.chain(p, [
 		function (value, s, f){
 			setTimeout(function (){
 				console.log(2);
@@ -83,38 +83,38 @@
 
 ##@result  : pass ->
  				@test name :
- 						promise.chain + promise.makePromiseArray
+ 						justChain.chain + justChain.makejustChainArray
 
 ##@codes   :
 =================================================
 
-	var p = promise(function (s, f){
+	var p = justChain(function (s, f){
 		setTimeout(function (){
 			console.log(1);
 			s();
 		}, 100);
 	});
 	var fs = require('fs');
-	var arrPromise = promise.makePromiseArray(
+	var arrjustChain = justChain.makejustChainArray(
 		[[file1, 'utf8'],file2],
 		fs.readFile
 	);
 
-	promise.chain(p, arrPromise, function (error, value, complete){
+	justChain.chain(p, arrjustChain, function (error, value, complete){
 		console.log('-------------------');
 		console.log(value);
 	})
 
 
 
-##@result  : pass -> @test name : promise.chain + promise.memory
+##@result  : pass -> @test name : justChain.chain + justChain.memory
 
 ##@codes   :
 =================================================
 	 	var fs = require('fs');
-		var m = promise.memory(fs.readFile);
+		var m = justChain.memory(fs.readFile);
 
-	var c1 =	promise.chain(m([file1, file2], function (value){
+	var c1 =	justChain.chain(m([file1, file2], function (value){
 				console.log(value);
 				return 1;
 			})
@@ -141,7 +141,7 @@
 				return 'hello';
 		});
 
-	promise.chain(c1,
+	justChain.chain(c1,
 
 			[function (value, s, f){
 				console.log(value + 'qqqqqqqqqqqqqqq');
@@ -159,5 +159,3 @@
 				console.log('-+++++++++++++++++++++++----');
 				console.log(complete, all);
 		});
-
-
