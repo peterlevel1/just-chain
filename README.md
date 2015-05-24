@@ -82,8 +82,7 @@
 
 
 ##@result  : pass ->
- 				@test name :
- 						justChain.chain + justChain.makejustChainArray
+## @test name :justChain.chain + justChain.makejustChainArray
 
 ##@codes   :
 =================================================
