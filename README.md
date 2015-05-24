@@ -3,7 +3,7 @@
 /**
  * @result  : pass -> @test name : promise.forever
 
- * @codes   :
+``@codes   :
  =================================================
 
 	var i = 0;
@@ -26,7 +26,7 @@
 /**
  * @result  : pass -> @test name : promise.foreverChain
 
- * @codes   :
+ ``@codes   :
  =================================================
 
 	promise.foreverChain({ x : 1 }, function (s, f){
@@ -52,7 +52,7 @@
 /**
  * @result  : pass -> @test name : promise.chain
 
- * @codes   :
+ ``@codes   :
  =================================================
 
 	var p = promise(function (s, f){
@@ -94,7 +94,7 @@
  				@test name :
  						promise.chain + promise.makePromiseArray
 
- * @codes   :
+ ``@codes   :
  =================================================
 
 	var p = promise(function (s, f){
@@ -121,7 +121,7 @@
 /**
  * @result  : pass -> @test name : promise.chain + promise.memory
 
- * @codes   :
+ ``@codes   :
  =================================================
 	 	var fs = require('fs');
 		var m = promise.memory(fs.readFile);
