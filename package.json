@@ -1,0 +1,23 @@
+{
+  "name": "just-chain",
+  "version": "1.0.0",
+  "description": "promise chain forever happy satisfy needs!",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "promise",
+    "chain",
+    "forever",
+    "happy",
+    "satisfy",
+    "needs!"
+  ],
+  "author": "xspeter <1785103669@qq.com>",
+  "license": "ISC"
+}
