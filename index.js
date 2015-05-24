@@ -16,8 +16,15 @@
     module.exports = factory(justChain);
   }
 
+
+
 })(this, function(justChain){
 
+	var setImmediate = setImmediate || function (fn) {
+		setTimeout(function(){
+			fn();
+		},0);
+	};
 
 	justChain.chain = function chainPromiseArray (_promise, promiseArray, callback){
 
