@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "https://github.com/peterlevel1/just-chain.git"
   },
   "keywords": [
     "promise",
@@ -18,6 +18,6 @@
     "satisfy",
     "needs!"
   ],
-  "author": "xspeter <1785103669@qq.com>",
+  "author": "peterlevel1",
   "license": "ISC"
 }
