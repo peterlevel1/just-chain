@@ -12,11 +12,11 @@
       });
 
   } else if (module && module.exports) {
+
   	var justChain = require('./lib/promise.js');
+
     module.exports = factory(justChain);
   }
-
-
 
 })(this, function(justChain){
 
