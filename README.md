@@ -82,7 +82,8 @@
 
 
 ##@result  : pass ->
-## @test name :justChain.chain + justChain.makejustChainArray
+ 				@test name :
+ 						justChain.chain + justChain.makePromiseArray
 
 ##@codes   :
 =================================================
@@ -94,7 +95,7 @@
 		}, 100);
 	});
 	var fs = require('fs');
-	var arrjustChain = justChain.makejustChainArray(
+	var arrjustChain = justChain.makePromiseArray(
 		[[file1, 'utf8'],file2],
 		fs.readFile
 	);
