@@ -1,13 +1,13 @@
 
 
-##@result  : pass -> @test name : justChain.forever
+##@result  : pass -> @test name : justChain.foreverRun
 
 ##@codes   :
 =================================================
 
 	var i = 0;
 
-	justChain.forever(1000, function (){
+	justChain.foreverRun(1000, function (){
 
 		i++;
 
@@ -20,12 +20,12 @@
 		console.log('done');
 	});
 
-##@result  : pass -> @test name : justChain.foreverChain
+##@result  : pass -> @test name : justChain.forever
 
 ##@codes   :
  =================================================
 
-	justChain.foreverChain({ x : 1 }, function (s, f){
+	justChain.forever({ x : 1 }, function (s, f){
 
 		console.log(this.x);
 
