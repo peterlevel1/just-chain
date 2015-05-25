@@ -6,19 +6,21 @@
 
       define(function(require){
 
-				var justChain = require('./lib/promise.js');
+				var promise = require('./lib/promise.js');
 
-				return factory(justChain);
+				return factory(promise);
       });
 
   } else if (module && module.exports) {
 
-  	var justChain = require('./lib/promise.js');
+  	var promise = require('./lib/promise.js');
 
-    module.exports = factory(justChain);
+    module.exports = factory(promise);
   }
 
-})(this, function(justChain){
+})(this, function(promise){
+
+	var justChain = promise;
 
 	var setImmediate = setImmediate || function (fn) {
 		setTimeout(function(){
@@ -26,39 +28,38 @@
 		},0);
 	};
 
-	justChain.chain = function chainPromiseArray (_promise, promiseArray, callback){
+	justChain.chain = function chain (_promise, promiseArray, callback) {
 
 		var complete = 0
 		, progressPromise = _promise
 		, all = promiseArray.length;
 
-		function chain(){
+		function chaining (){
 
-			 while(promiseArray.length) {
-
+			while(promiseArray.length) {
 				(function (progressFire){
 					progressPromise = progressPromise
-					.then(function (value){
-						complete++;
-						return promise(function (s, f){
-							progressFire(value, s, f);
-						});
+						.then(function (value){
+								complete++;
+								return justChain(function (s, f){
+									progressFire(value, s, f);
+							});
 					});
 				})(promiseArray.shift());
 			};
 		}
 
-		chain();
+		chaining();
 
-		return justChain.then(function (value){
+		return progressPromise.then(function (value){
 
-			chain = null;
+			chaining = null;
 
 			return callback(null, value, complete, all);
 
 		}, function (e){
 
-			chain = null;
+			chaining = null;
 
 			return callback(e, null, complete, all) || e;
 		});
@@ -67,12 +68,12 @@
 
 	justChain.makePromiseArray = function makePromiseArray(arr, asyncFn, ctx){
 
-		var i = 0
+		var i = -1
 		, length = arr.length
 		, promiseArray = []
 		, results = [];
 
-		while (i < length) {
+		while ((++i) < length) {
 
 			(function (srcValue, i){
 
@@ -95,14 +96,12 @@
 				);
 
 			})(arr[i], i);
-
-			i++;
 		}
 
 		return promiseArray;
 	}
 
-	justChain.makeChaining = function makeChainingPromise(memoryPromise, done){
+	justChain.makeChaining = function makeChaining(memoryPromise, done){
 		return function chaining(value, s, f) {
 			return memoryPromise(value,function (_value) {
 				return s(done(_value));
@@ -110,16 +109,14 @@
 		}
 	}
 
-	justChain.memory = function memoryPromise(asyncFn){
+	justChain.memory = function memory(asyncFn){
 
 		return function (value, done, fail){
-
-			fail = fail || justChain.defaultReject;
 
 			return justChain(function (s, f){
 
 				var memoryDone = function memoryDone (e, _value) {
-					if (e)
+					if (e || e === false)
 						f(e);
 					else
 						s(_value);
@@ -162,12 +159,10 @@
 		justChain(fn)
 		.then(function (){
 
-			foreverChain(ctx, fn, done, true);
+			forever(ctx, fn, done, true);
 
 		}, done);
 	}
 
 	return justChain;
-
 });
-
